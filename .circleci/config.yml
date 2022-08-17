@@ -39,3 +39,7 @@ workflows:
       - approval:
           requires:
             - Hold-for-Approval
+            filters:
+            branches:
+              only:
+                - main
