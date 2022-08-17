@@ -7,7 +7,12 @@ jobs:
       - image: circleci/python:3.6.4
     steps:
       - checkout
-      - run: python3 main.py
+      - when:
+          condition:
+            equal: [ main, << pipeline.git.branch >> ]
+          steps:
+            - run: echo "I am on main"
+            - run: python3 main.py
   test:
     working_directory: ~/circleci-python
     docker:
