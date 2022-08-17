@@ -15,6 +15,14 @@ jobs:
     steps:
       - checkout
       - run: python3 main-test.py
+  approval:
+    docker:
+      - image: alpine:3.15
+    steps:
+      - run:
+          name: Approval Complete
+          command: |
+            echo 'The work is now complete.'
 
 workflows:
   build_and_test:
@@ -23,3 +31,6 @@ workflows:
       - test:
           requires:
             - build
+      - approval:
+          requires:
+            - test
